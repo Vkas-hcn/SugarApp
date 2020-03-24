@@ -1,0 +1,125 @@
+apply from:"../common_libary_build.gradle"
+apply from: '../bintray_publish.gradle'
+apply plugin: 'org.jetbrains.dokka'
+android{
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+dependencies{
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api (rootProject.ext.dependencies['support-v4-x']){
+        exclude module: 'support-annotations'
+    }
+    api(rootProject.ext.dependencies["appcompat-v7-x"]) {
+        exclude module: 'support-annotations'
+    }
+    api rootProject.ext.dependencies["design-x"]
+    api(rootProject.ext.dependencies["recyclerview-x"]) {
+        exclude module: 'support-annotations'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle3"]) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle3-android"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle3-android-life"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxpermissions2"]) {//运行时权限
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+        exclude group: 'com.android.support'
+    }
+
+    api rootProject.ext.dependencies["rxjava2"]
+    api(rootProject.ext.dependencies['rxandroid2']){
+        exclude module: 'rxjava'
+    }
+    api rootProject.ext.dependencies['timber']//日志打印
+    api rootProject.ext.dependencies['utilcode']//好用的工具库
+    api rootProject.ext.dependencies['multidex-x']
+    api (rootProject.ext.dependencies['arouter']){
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    }
+
+
+    api rootProject.ext.dependencies['gloading']//解耦不同状态页
+    api rootProject.ext.dependencies['immersionbar-base']//状态栏
+    api rootProject.ext.dependencies['immersionbar-components']
+    //retrofit http
+    api(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["logging-interceptor"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["stetho"]
+    implementation(rootProject.ext.dependencies["stetho-okhttp3"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    api rootProject.ext.dependencies["retorfitUrlManager"]
+    api rootProject.ext.dependencies["lottie"]
+    api rootProject.ext.dependencies["toast"]
+    api rootProject.ext.dependencies["anko"]
+    api rootProject.ext.dependencies["anko-sdk"]
+    api rootProject.ext.dependencies["anko-design"]
+    api rootProject.ext.dependencies["anko-v4"]
+    implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["fresco-gif"]
+    implementation rootProject.ext.dependencies["fresco-ok3"]
+}
+
+//同时添加三个方法 for kotlin
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadoc.destinationDir
+}
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts{
+    archives generateJavadoc //javadocJar
+    archives generateSourcesJar //sourcesJar
+}

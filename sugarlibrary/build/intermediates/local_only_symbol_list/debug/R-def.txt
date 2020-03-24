@@ -1,0 +1,33 @@
+R_DEF: Internal format may change without notice
+local
+anim lib_dialog_load_animation
+array colors
+attr? ball_colors
+attr? ball_size
+attr? balls
+attr? enable_size_animation
+attr? max_ball_size
+attr? min_ball_size
+attr? movement_cycle_time
+attr? path
+attr? size_cycle_time
+color ball1
+color ball2
+color ball3
+color ball4
+color libColorGray
+color libColorTransparent
+id error_retry
+id fresco_drawee
+id lib_dialog_view
+id lib_loading_msg
+layout lib_empty_page_view
+layout lib_error_page_view
+layout lib_loading_dialog_view
+layout lib_loading_page_view
+layout lib_offilne_page_view
+layout lib_success_page_view
+mipmap lib_loading
+string app_name
+style lib_loading_dialog
+styleable LoadingBalls balls movement_cycle_time size_cycle_time ball_colors ball_size enable_size_animation min_ball_size max_ball_size path

@@ -1,0 +1,45 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.sugar.sugarlibrary"
+4    android:versionCode="28"
+5    android:versionName="1.0.1.8" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="17"
+8-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:4:5-79
+11-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:4:22-76
+12
+13    <application>
+13-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:5:5-20:19
+14
+15        <!-- 允许绘制到oppo、vivo刘海屏机型的刘海区域 -->
+16        <meta-data
+16-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:7:9-9:35
+17            android:name="android.max_aspect"
+17-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:8:13-46
+18            android:value="2.2" />
+18-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:9:13-32
+19
+20        <!-- 允许绘制到华为刘海屏机型的刘海区域 -->
+21        <meta-data
+21-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:12:9-14:36
+22            android:name="android.notch_support"
+22-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:13:13-49
+23            android:value="true" />
+23-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:14:13-33
+24
+25        <!-- 允许绘制到小米刘海屏机型的刘海区域 -->
+26        <meta-data
+26-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:17:9-19:40
+27            android:name="notch.config"
+27-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:18:13-40
+28            android:value="portrait" />
+28-->H:\androidfiles\SugarApp\sugarlibrary\src\main\AndroidManifest.xml:19:13-37
+29    </application>
+30
+31</manifest>

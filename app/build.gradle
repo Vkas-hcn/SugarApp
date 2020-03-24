@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply from: "../common_app_build.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+
+    defaultConfig {
+        applicationId "com.vkas.sugarapp"
+        //        纯java用这种模式
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//                includeCompileClasspath true
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    //kotlin和java混编使用apt
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+        generateStubs = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    api rootProject.ext.dependencies["constraint-x"]
+    implementation project(':sugarlibrary')
+    //fastjson converter
+    implementation(rootProject.ext.dependencies["retrofit-converter-fastj"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+
+    }
+    api rootProject.ext.dependencies["smartRefresh"]
+    api rootProject.ext.dependencies["bottomnavigationbar"]
+
+}

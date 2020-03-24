@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ball1">#F59C22</color>
+    <color name="ball2">#FFEB3B</color>
+    <color name="ball3">#FF06CB7E</color>
+    <color name="ball4">#FFF55122</color>
+    <integer-array name="colors">
+        <item>@color/ball1</item>
+        <item>@color/ball2</item>
+        <item>@color/ball3</item>
+        <item>@color/ball4</item>
+    </integer-array>
+    <declare-styleable name="LoadingBalls">
+        <attr name="balls" format="integer"/>
+        <attr name="movement_cycle_time" format="integer"/>
+        <attr name="size_cycle_time" format="integer"/>
+        <attr name="ball_colors" format="reference"/>
+        <attr name="ball_size" format="dimension"/>
+        <attr name="enable_size_animation" format="boolean"/>
+        <attr name="min_ball_size" format="dimension"/>
+        <attr name="max_ball_size" format="dimension"/>
+        <attr name="path" format="string"/>
+    </declare-styleable>
+</resources>
